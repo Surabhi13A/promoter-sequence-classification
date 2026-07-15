@@ -2,3 +2,4 @@ ucimlrepo
 pandas
 ipykernel
 requests
+nbstripout
