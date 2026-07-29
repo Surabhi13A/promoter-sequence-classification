@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import pathlib
+from sklearn.model_selection import train_test_split
 
 DATA_PATH = pathlib.Path(__file__).parent.parent / "data" / "raw" / "promoters.data"
 
@@ -43,7 +44,7 @@ def one_hot_encode(seq):
 
 def preprocess_data(df):
     """
-    Preprocess the promoter dataset by one-hot encoding the DNA sequences.
+    Preprocess the promoter dataset by one-hot encoding the DNA sequences and converts class labels from '+'/'-' to 1/0.
 
     Args:
         df (pd.DataFrame): A DataFrame containing the promoter dataset.
@@ -51,6 +52,7 @@ def preprocess_data(df):
     Returns:
         pd.DataFrame: A DataFrame containing the preprocessed promoter dataset.
     """
-
+    df = df.copy()
+    df["class"] = df["class"].replace({"+": 1, "-": 0}).astype(int)
     df["one_hot_sequence"] = df["sequence"].apply(one_hot_encode)
     return df
