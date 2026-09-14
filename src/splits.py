@@ -11,6 +11,6 @@ def data_splitting(X, y):
         _type_: _description_
     """
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.20, shuffle=True, random_state=13, stratify=y
+        X, y, test_size=0.20, shuffle=True, random_state=42, stratify=y
     )
     return X_train, X_test, y_train, y_test
